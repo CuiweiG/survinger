@@ -7,6 +7,7 @@
 #'   dlnorm na.omit setNames
 #' @importFrom methods is
 #' @importFrom utils head tail
+#' @importFrom ggplot2 %+replace%
 #' @importFrom generics tidy glance
 NULL
 
