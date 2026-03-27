@@ -1,0 +1,52 @@
+Package: survinger
+Title: Design-Adjusted Inference for Pathogen Lineage Surveillance
+Version: 0.1.0
+Authors@R:
+    person("Alice", "Gao", , "cuiwei.gao@outlook.com",
+           role = c("aut", "cre"),
+           comment = c())
+Description: Provides tools for optimizing sequencing resource allocation
+    and estimating pathogen lineage prevalence under real-world genomic
+    surveillance conditions. Implements constrained allocation optimization
+    for limited sequencing capacity across multiple regions and sample
+    sources. Includes Horvitz-Thompson and post-stratified estimators that
+    account for unequal sequencing rates, delay-adjusted nowcasting for
+    right-censored reporting data, and combined design-weighted
+    delay-corrected inference with uncertainty propagation.
+License: MIT + file LICENSE
+URL: https://github.com/CuiweiG/survinger
+BugReports: https://github.com/CuiweiG/survinger/issues
+Depends:
+    R (>= 4.1.0)
+Imports:
+    checkmate (>= 2.0.0),
+    cli (>= 3.0.0),
+    dplyr (>= 1.1.0),
+    ggplot2 (>= 3.4.0),
+    MASS,
+    Matrix,
+    methods,
+    nloptr (>= 2.0.0),
+    purrr,
+    rlang (>= 1.0.0),
+    stats,
+    survey,
+    tibble,
+    tidyr,
+    vctrs
+Suggests:
+    bench,
+    covr,
+    knitr,
+    pkgdown,
+    rmarkdown,
+    scales,
+    testthat (>= 3.0.0),
+    withr
+Config/testthat/edition: 3
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+VignetteBuilder: knitr
