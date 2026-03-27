@@ -1,0 +1,60 @@
+url: https://CuiweiG.github.io/survinger/
+
+template:
+  bootstrap: 5
+
+reference:
+  - title: "Design Objects"
+    contents:
+      - surv_design
+      - surv_update_rates
+      - surv_set_weights
+
+  - title: "Resource Allocation"
+    contents:
+      - surv_optimize_allocation
+      - surv_compare_allocations
+
+  - title: "Prevalence Estimation"
+    contents:
+      - surv_lineage_prevalence
+      - surv_naive_prevalence
+
+  - title: "Delay Correction"
+    contents:
+      - surv_estimate_delay
+      - surv_reporting_probability
+      - surv_nowcast_lineage
+
+  - title: "Combined Inference"
+    contents:
+      - surv_adjusted_prevalence
+
+  - title: "Detection Probability"
+    contents:
+      - surv_detection_probability
+      - surv_required_sequences
+
+  - title: "Simulation"
+    contents:
+      - surv_simulate
+
+  - title: "Diagnostics"
+    contents:
+      - surv_compare_estimates
+      - surv_plot_sequencing_rates
+      - surv_plot_allocation
+      - surv_design_effect
+
+  - title: "Data"
+    contents:
+      - sarscov2_surveillance
+
+articles:
+  - title: "Getting Started"
+    contents:
+      - survinger
+  - title: "Methods"
+    contents:
+      - allocation-optimization
+      - delay-correction
