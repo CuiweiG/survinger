@@ -1,0 +1,93 @@
+---
+title: "Optimizing Sequencing Resource Allocation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Optimizing Sequencing Resource Allocation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
+                      fig.width = 7, fig.height = 4, dev = "png")
+```
+
+## Why allocation matters
+
+In genomic surveillance, the total number of sequences you can generate each
+week is fixed by lab capacity and budget. The question is not *how many* to
+sequence (phylosamp answers that), but *how to distribute* a fixed number
+across regions, institutions, and sample sources.
+
+Poor allocation wastes resources. If you sequence proportionally to
+submissions (which is what most systems do by default), you over-represent
+regions that send more samples --- which are often the same regions that
+already have the highest sequencing rates.
+
+## The three objectives
+
+survinger supports three optimization objectives:
+
+- **`min_mse`**: Minimize the mean squared error of lineage prevalence
+  estimates. This is a Neyman-type allocation that gives more sequences
+  to high-variance strata.
+
+- **`max_detection`**: Maximize the probability of detecting a rare
+  variant. This spreads sequences to maximize geographic coverage.
+
+- **`min_imbalance`**: Minimize the deviation from population-proportional
+  representation. This ensures each region is fairly represented.
+
+## Example
+
+```{r example}
+library(survinger)
+data(sarscov2_surveillance)
+
+design <- surv_design(
+  data = sarscov2_surveillance$sequences,
+  strata = ~ region,
+  sequencing_rate = sarscov2_surveillance$population[c("region", "seq_rate")],
+  population = sarscov2_surveillance$population,
+  source_type = "source_type"
+)
+```
+
+### Optimize for minimum MSE
+
+```{r min-mse}
+alloc_mse <- surv_optimize_allocation(design, "min_mse", total_capacity = 500)
+print(alloc_mse)
+plot(alloc_mse)
+```
+
+### Compare all strategies
+
+```{r compare}
+comparison <- surv_compare_allocations(design, total_capacity = 500)
+print(comparison)
+```
+
+The table shows the trade-off: minimizing MSE may increase imbalance,
+while proportional allocation sacrifices detection power.
+
+### With minimum coverage constraints
+
+```{r floor}
+alloc_floor <- surv_optimize_allocation(
+  design, "min_mse", total_capacity = 500, min_per_stratum = 20
+)
+print(alloc_floor)
+```
+
+Setting `min_per_stratum = 20` ensures every region gets at least 20
+sequences, preventing any region from being invisible.
+
+## Choosing an objective
+
+- Use **`min_mse`** when your primary goal is accurate prevalence tracking.
+- Use **`max_detection`** when hunting for rare emerging variants.
+- Use **`min_imbalance`** when equity and representativeness are priorities.
+
+In practice, reviewing the `surv_compare_allocations()` output helps
+stakeholders understand the trade-offs and choose based on their mandate.
