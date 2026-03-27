@@ -171,7 +171,21 @@ surv_nowcast_lineage <- function(design, delay_fit, lineage = NULL,
   dat <- resolved$data
   time_col <- resolved$col
 
-  if (!is.null(lineage)) dat <- dat[dat[[lin_col]] == lineage, , drop = FALSE]
+  if (!is.null(lineage)) {
+    dat <- dat[dat[[lin_col]] == lineage, , drop = FALSE]
+    if (nrow(dat) == 0L) {
+      cli::cli_warn("No sequences found for lineage {.val {lineage}}. Returning empty nowcast.")
+      empty_est <- tibble::tibble(
+        time = character(0), n_observed = integer(0),
+        median_collection = as.Date(character(0)),
+        days_ago = integer(0), report_prob = numeric(0),
+        n_estimated = numeric(0), se = numeric(0),
+        ci_lower = numeric(0), ci_upper = numeric(0),
+        is_nowcast = logical(0)
+      )
+      return(new_surv_nowcast(empty_est, delay_fit, horizon, method, lineage))
+    }
+  }
 
   time_summary <- dat |>
     dplyr::mutate(.time = .data[[time_col]]) |>

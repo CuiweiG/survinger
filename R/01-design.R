@@ -26,6 +26,9 @@
 #'
 #' @return An object of class `surv_design`.
 #'
+#' @seealso [surv_simulate()], [surv_lineage_prevalence()],
+#'   [surv_optimize_allocation()]
+#'
 #' @examples
 #' sim <- surv_simulate(n_regions = 3, n_weeks = 8, seed = 42)
 #' design <- surv_design(
@@ -194,4 +197,44 @@ surv_set_weights <- function(design, weights) {
   design$weights$weight <- weights
   design$weights$weight_normalized <- weights / mean(weights)
   design
+}
+
+
+#' Subset a surveillance design by filter criteria
+#'
+#' Creates a new `surv_design` object containing only sequences
+#' matching the specified filter criteria.
+#'
+#' @param design A `surv_design` object.
+#' @param ... Filter expressions passed to [dplyr::filter()].
+#'
+#' @return A new `surv_design` object with filtered data.
+#'
+#' @seealso [surv_design()]
+#'
+#' @examples
+#' sim <- surv_simulate(n_regions = 5, n_weeks = 12, seed = 1)
+#' d <- surv_design(sim$sequences, ~ region,
+#'                  sim$population[c("region", "seq_rate")], sim$population)
+#' d_sub <- surv_filter(d, region %in% c("Region_A", "Region_B"))
+#' print(d_sub)
+#'
+#' @export
+surv_filter <- function(design, ...) {
+  .assert_surv_design(design)
+  new_data <- dplyr::filter(design$data, ...)
+  if (nrow(new_data) == 0L) {
+    cli::cli_warn("Filter resulted in 0 observations.")
+  }
+  surv_design(
+    data = new_data,
+    strata = design$strata_formula,
+    sequencing_rate = design$strata_info[c(design$strata_vars, "seq_rate")],
+    population = design$population,
+    date_collected = design$col_date_collected,
+    date_reported = design$col_date_reported,
+    lineage = design$col_lineage,
+    source_type = design$col_source_type,
+    source_config = design$source_config
+  )
 }

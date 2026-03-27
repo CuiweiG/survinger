@@ -2,10 +2,13 @@
 % Please edit documentation in R/00-classes.R, R/05-adjusted.R
 \name{print.surv_adjusted}
 \alias{print.surv_adjusted}
+\alias{as.data.frame.surv_adjusted}
 \alias{surv_adjusted_prevalence}
 \title{Combined design-weighted and delay-adjusted prevalence}
 \usage{
 \method{print}{surv_adjusted}(x, ...)
+
+\method{as.data.frame}{surv_adjusted}(x, ...)
 
 surv_adjusted_prevalence(
   design,

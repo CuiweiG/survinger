@@ -81,3 +81,7 @@ design <- surv_design(
 print(design)
 
 }
+\seealso{
+\code{\link[=surv_simulate]{surv_simulate()}}, \code{\link[=surv_lineage_prevalence]{surv_lineage_prevalence()}},
+\code{\link[=surv_optimize_allocation]{surv_optimize_allocation()}}
+}

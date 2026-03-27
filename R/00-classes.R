@@ -209,3 +209,32 @@ print.surv_adjusted <- function(x, ...) {
   print(x$estimates, n = 10)
   invisible(x)
 }
+
+# ---- as.data.frame methods ----
+
+#' @param x Object to convert.
+#' @param ... Additional arguments (unused).
+#' @return A data.frame.
+#' @rdname surv_lineage_prevalence
+#' @export
+as.data.frame.surv_prevalence <- function(x, ...) {
+  as.data.frame(x$estimates)
+}
+
+#' @rdname surv_nowcast_lineage
+#' @export
+as.data.frame.surv_nowcast <- function(x, ...) {
+  as.data.frame(x$estimates)
+}
+
+#' @rdname surv_adjusted_prevalence
+#' @export
+as.data.frame.surv_adjusted <- function(x, ...) {
+  as.data.frame(x$estimates)
+}
+
+#' @rdname surv_optimize_allocation
+#' @export
+as.data.frame.surv_allocation <- function(x, ...) {
+  as.data.frame(x$allocation)
+}
