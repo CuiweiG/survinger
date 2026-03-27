@@ -7,17 +7,21 @@
 #' @export
 print.surv_design <- function(x, ...) {
   cli::cli_rule("Genomic Surveillance Design")
-  cli::cli_text("Observations: {.strong {formatC(x$n_obs, big.mark = ',')}}")
-  cli::cli_text("Strata: {.strong {x$n_strata}} ({paste(x$strata_vars, collapse = ' x ')})")
+  n_obs_fmt <- formatC(x$n_obs, big.mark = ",")
+  strata_label <- paste(x$strata_vars, collapse = " x ")
+  cli::cli_text("Observations: {.strong {n_obs_fmt}}")
+  cli::cli_text("Strata: {.strong {x$n_strata}} ({strata_label})")
   dr <- range(x$data[[x$col_date_collected]], na.rm = TRUE)
   cli::cli_text("Date range: {dr[1]} to {dr[2]}")
-  cli::cli_text("Lineages: {.strong {length(unique(x$data[[x$col_lineage]]))}}")
+  n_lin <- length(unique(x$data[[x$col_lineage]]))
+  cli::cli_text("Lineages: {.strong {n_lin}}")
   if (!is.null(x$col_source_type)) {
-    src <- sort(unique(x$data[[x$col_source_type]]))
-    cli::cli_text("Sources: {paste(src, collapse = ', ')}")
+    src_label <- paste(sort(unique(x$data[[x$col_source_type]])), collapse = ", ")
+    cli::cli_text("Sources: {src_label}")
   }
   wr <- range(x$weights$weight, na.rm = TRUE)
-  cli::cli_text("Weight range: [{round(wr[1], 3)}, {round(wr[2], 3)}]")
+  wt_label <- paste0("[", round(wr[1], 3), ", ", round(wr[2], 3), "]")
+  cli::cli_text("Weight range: {wt_label}")
   invisible(x)
 }
 
@@ -38,8 +42,10 @@ summary.surv_design <- function(object, ...) {
 #' @export
 print.summary.surv_design <- function(x, ...) {
   cli::cli_rule("Surveillance Design Summary")
-  cli::cli_text("Sequences: {.strong {formatC(x$n_obs, big.mark = ',')}}")
-  cli::cli_text("Strata: {x$n_strata} ({paste(x$strata_vars, collapse = ' x ')})")
+  n_fmt <- formatC(x$n_obs, big.mark = ",")
+  sv_label <- paste(x$strata_vars, collapse = " x ")
+  cli::cli_text("Sequences: {.strong {n_fmt}}")
+  cli::cli_text("Strata: {x$n_strata} ({sv_label})")
   cli::cli_text("Period: {x$date_range[1]} to {x$date_range[2]}")
   cli::cli_h3("Top lineages")
   top <- utils::head(x$lineage_counts, 5)
