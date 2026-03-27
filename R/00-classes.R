@@ -4,6 +4,10 @@
 
 # ---- surv_design (public constructor in 01-design.R) ----
 
+#' @param x Object to print or summarize.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_design
 #' @export
 print.surv_design <- function(x, ...) {
   cli::cli_rule("Genomic Surveillance Design")
@@ -25,6 +29,9 @@ print.surv_design <- function(x, ...) {
   invisible(x)
 }
 
+#' @param object A `surv_design` object to summarize.
+#' @return A summary list of class `summary.surv_design`.
+#' @rdname surv_design
 #' @export
 summary.surv_design <- function(object, ...) {
   out <- list(
@@ -39,6 +46,8 @@ summary.surv_design <- function(object, ...) {
   structure(out, class = "summary.surv_design")
 }
 
+#' @return Invisibly returns the input object.
+#' @rdname surv_design
 #' @export
 print.summary.surv_design <- function(x, ...) {
   cli::cli_rule("Surveillance Design Summary")
@@ -70,6 +79,10 @@ new_surv_allocation <- function(allocation, objective, total_capacity,
   ), class = "surv_allocation")
 }
 
+#' @param x Object to print.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_optimize_allocation
 #' @export
 print.surv_allocation <- function(x, ...) {
   cli::cli_rule("Optimal Sequencing Allocation")
@@ -94,6 +107,10 @@ new_surv_prevalence <- function(estimates, design, method, lineage,
   ), class = "surv_prevalence")
 }
 
+#' @param x Object to print.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_lineage_prevalence
 #' @export
 print.surv_prevalence <- function(x, ...) {
   cli::cli_rule("Lineage Prevalence Estimate")
@@ -119,6 +136,10 @@ new_surv_delay_fit <- function(distribution, parameters, strata,
   ), class = "surv_delay_fit")
 }
 
+#' @param x Object to print.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_estimate_delay
 #' @export
 print.surv_delay_fit <- function(x, ...) {
   cli::cli_rule("Reporting Delay Distribution")
@@ -136,6 +157,7 @@ print.surv_delay_fit <- function(x, ...) {
 
 #' Internal constructor for surv_nowcast
 #' @keywords internal
+#' @noRd
 new_surv_nowcast <- function(estimates, delay_fit, truncation_window,
                              method, lineage) {
   structure(list(
@@ -145,6 +167,10 @@ new_surv_nowcast <- function(estimates, delay_fit, truncation_window,
   ), class = "surv_nowcast")
 }
 
+#' @param x Object to print.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_nowcast_lineage
 #' @export
 print.surv_nowcast <- function(x, ...) {
   cli::cli_rule("Delay-Adjusted Nowcast")
@@ -160,6 +186,7 @@ print.surv_nowcast <- function(x, ...) {
 
 #' Internal constructor for surv_adjusted
 #' @keywords internal
+#' @noRd
 new_surv_adjusted <- function(estimates, design_component, delay_component,
                               method) {
   structure(list(
@@ -170,6 +197,10 @@ new_surv_adjusted <- function(estimates, design_component, delay_component,
   ), class = "surv_adjusted")
 }
 
+#' @param x Object to print.
+#' @param ... Additional arguments (unused).
+#' @return Invisibly returns the input object.
+#' @rdname surv_adjusted_prevalence
 #' @export
 print.surv_adjusted <- function(x, ...) {
   cli::cli_rule("Design-Weighted Delay-Adjusted Prevalence")

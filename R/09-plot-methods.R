@@ -2,16 +2,32 @@
 # S3 plot methods for all surv_* classes
 # ============================================================
 
+#' Plot methods for survinger objects
+#'
+#' Visualize surveillance design, allocation, prevalence estimates,
+#' delay distributions, nowcasts, and adjusted estimates.
+#'
+#' @param x A survinger object.
+#' @param ... Additional arguments (currently unused).
+#'
+#' @return A ggplot2 object.
+#'
+#' @name plot.surv
+NULL
+
+#' @rdname plot.surv
 #' @export
 plot.surv_design <- function(x, ...) {
   surv_plot_sequencing_rates(x)
 }
 
+#' @rdname plot.surv
 #' @export
 plot.surv_allocation <- function(x, ...) {
   surv_plot_allocation(x)
 }
 
+#' @rdname plot.surv
 #' @export
 plot.surv_prevalence <- function(x, ...) {
   est <- x$estimates[!is.na(x$estimates$prevalence), , drop = FALSE]
@@ -32,6 +48,7 @@ plot.surv_prevalence <- function(x, ...) {
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 }
 
+#' @rdname plot.surv
 #' @export
 plot.surv_delay_fit <- function(x, ...) {
   params <- x$parameters[1, ]
@@ -60,6 +77,7 @@ plot.surv_delay_fit <- function(x, ...) {
     ggplot2::theme_minimal(base_size = 12)
 }
 
+#' @rdname plot.surv
 #' @export
 plot.surv_nowcast <- function(x, ...) {
   est <- x$estimates
@@ -81,6 +99,7 @@ plot.surv_nowcast <- function(x, ...) {
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1))
 }
 
+#' @rdname plot.surv
 #' @export
 plot.surv_adjusted <- function(x, ...) {
   est <- x$estimates[!is.na(x$estimates$prevalence), , drop = FALSE]
