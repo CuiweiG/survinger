@@ -7,10 +7,9 @@
 .assert_columns_exist <- function(df, cols, arg_name = "data") {
   missing_cols <- setdiff(cols, names(df))
   if (length(missing_cols) > 0L) {
-    cli::cli_abort(
-      "Column{?s} {.val {missing_cols}} not found in {.arg {arg_name}}.",
-      call = rlang::caller_env()
-    )
+    msg <- paste0("Column(s) not found in `", arg_name, "`: ",
+                  paste(missing_cols, collapse = ", "))
+    cli::cli_abort(msg, call = rlang::caller_env())
   }
   invisible(TRUE)
 }
