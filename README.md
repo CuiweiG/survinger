@@ -130,7 +130,7 @@ Real-world validation uses ECDC open data (see `vignette("real-world-ecdc")`).
 ```bibtex
 @Manual{survinger2026,
   title = {survinger: Design-Adjusted Inference for Pathogen Lineage Surveillance},
-  author = {Alice Gao},
+  author = {CuiweiG},
   year = {2026},
   note = {R package version 0.1.0},
   url = {https://github.com/CuiweiG/survinger}
