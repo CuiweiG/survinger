@@ -1,0 +1,151 @@
+---
+title: "Introduction to survinger"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to survinger}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>",
+  fig.width = 7, fig.height = 4, dev = "png"
+)
+```
+
+## The problem
+
+Pathogen genomic surveillance is the backbone of pandemic preparedness. By
+sequencing positive samples and tracking lineage frequencies over time, public
+health agencies can detect emerging variants early and monitor their spread.
+
+However, real-world surveillance systems have a fundamental bias problem:
+**sequencing rates are highly unequal across regions and institutions.** A
+well-resourced capital city might sequence 15% of positive cases, while a
+rural area sequences only 0.5%. If you simply count uploaded sequences to
+estimate "what fraction is variant X?", the answer is dominated by
+high-sequencing regions — regardless of what is actually circulating
+elsewhere.
+
+On top of this, there is a **reporting delay** problem. From sample
+collection to sequence upload, 1–4 weeks can pass. This means the most
+recent weeks of data are always incomplete, and naive trend estimates
+systematically undercount the latest period.
+
+**survinger** addresses both problems in a unified framework.
+
+## What survinger does
+
+The package provides three core capabilities:
+
+1. **Resource allocation**: Given limited sequencing capacity, how should
+   sequences be distributed across regions and sources to maximize
+   surveillance value?
+
+2. **Design-weighted estimation**: Given that sequencing rates differ,
+   how do we estimate lineage prevalence correctly?
+
+3. **Delay-adjusted nowcasting**: Given that recent data is incomplete,
+   what is the true current trend?
+
+## Quick start
+
+```{r quickstart}
+library(survinger)
+
+# Load example data (simulated, 5 regions, 26 weeks)
+data(sarscov2_surveillance)
+sim <- sarscov2_surveillance
+
+# Create a surveillance design object
+design <- surv_design(
+  data = sim$sequences,
+  strata = ~ region,
+  sequencing_rate = sim$population[c("region", "seq_rate")],
+  population = sim$population,
+  source_type = "source_type"
+)
+print(design)
+```
+
+The design object captures the stratification structure and computes
+inverse-probability weights automatically.
+
+## Comparing weighted vs naive estimates
+
+The core value proposition: **design-weighted estimates correct for
+sequencing inequality.**
+
+```{r comparison, fig.cap = "Weighted vs naive prevalence estimates for BA.2.86"}
+weighted <- surv_lineage_prevalence(design, "BA.2.86", method = "hajek")
+naive <- surv_naive_prevalence(design, "BA.2.86")
+surv_compare_estimates(weighted, naive)
+```
+
+The gap between the two lines shows the bias introduced by ignoring
+unequal sequencing rates.
+
+## Optimizing resource allocation
+
+If you have 500 sequencing slots this week, how should you distribute them?
+
+```{r allocation}
+alloc <- surv_optimize_allocation(design, "min_mse", total_capacity = 500)
+print(alloc)
+```
+
+Compare with alternative strategies:
+
+```{r compare-alloc}
+surv_compare_allocations(design, total_capacity = 500)
+```
+
+## Delay correction
+
+Estimate the reporting delay distribution and nowcast recent counts:
+
+```{r delay}
+delay_fit <- surv_estimate_delay(design)
+print(delay_fit)
+
+nowcast <- surv_nowcast_lineage(design, delay_fit, "BA.2.86")
+plot(nowcast)
+```
+
+## Combined correction
+
+The main inference function applies both design weighting and delay
+correction simultaneously:
+
+```{r adjusted}
+adjusted <- surv_adjusted_prevalence(design, delay_fit, "BA.2.86")
+print(adjusted)
+```
+
+## Detection power
+
+How likely is the current system to detect a variant at 1% prevalence?
+
+```{r detection}
+det <- surv_detection_probability(design, true_prevalence = 0.01)
+cat("Weekly detection probability:", round(det$overall, 3), "\n")
+cat("Required sequences for 95% detection:", surv_required_sequences(0.01), "\n")
+```
+
+## How survinger differs from phylosamp
+
+The [phylosamp](https://CRAN.R-project.org/package=phylosamp) package
+provides sample size calculations for variant surveillance — it answers
+*"how many sequences do I need in total?"*
+
+survinger answers the next question: *"Given my fixed capacity, how do I
+allocate it optimally, and how do I correct the resulting estimates for
+the biases my design introduces?"*
+
+The two packages are complementary, not competing.
+
+## Next steps
+
+- `vignette("allocation-optimization")` — deep dive into allocation
+- `vignette("delay-correction")` — delay estimation and nowcasting

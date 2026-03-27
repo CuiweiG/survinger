@@ -9,3 +9,5 @@
 ^data-raw$
 ^\.lintr$
 ^cran-comments\.md$
+^doc$
+^Meta$
