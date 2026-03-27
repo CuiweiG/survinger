@@ -57,3 +57,42 @@ test_that("print.surv_delay_fit works", {
   fit <- surv_estimate_delay(d)
   expect_no_error(print(fit))
 })
+
+test_that("poisson delay distribution works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 15, seed = 70)
+  d <- surv_design(sim$sequences, ~ region,
+                   sim$population[c("region", "seq_rate")], sim$population)
+  fit <- surv_estimate_delay(d, distribution = "poisson")
+  expect_s3_class(fit, "surv_delay_fit")
+  expect_equal(fit$distribution, "poisson")
+  probs <- surv_reporting_probability(fit, delta = 0:30)
+  expect_true(all(diff(probs) >= -1e-10))
+})
+
+test_that("lognormal delay distribution works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 15, seed = 71)
+  d <- surv_design(sim$sequences, ~ region,
+                   sim$population[c("region", "seq_rate")], sim$population)
+  fit <- surv_estimate_delay(d, distribution = "lognormal")
+  expect_s3_class(fit, "surv_delay_fit")
+  probs <- surv_reporting_probability(fit, delta = 0:30)
+  expect_true(all(diff(probs) >= -1e-10))
+})
+
+test_that("nonparametric delay works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 15, seed = 72)
+  d <- surv_design(sim$sequences, ~ region,
+                   sim$population[c("region", "seq_rate")], sim$population)
+  fit <- surv_estimate_delay(d, distribution = "nonparametric")
+  expect_s3_class(fit, "surv_delay_fit")
+  probs <- surv_reporting_probability(fit, delta = 0:30)
+  expect_true(all(diff(probs) >= -1e-10))
+})
+
+test_that("stratified delay estimation works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 15, seed = 73)
+  d <- surv_design(sim$sequences, ~ region,
+                   sim$population[c("region", "seq_rate")], sim$population)
+  fit <- surv_estimate_delay(d, strata = ~ region)
+  expect_true(nrow(fit$parameters) >= 3)
+})

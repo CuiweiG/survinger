@@ -108,3 +108,15 @@ test_that("print and summary do not error", {
   expect_s3_class(s, "summary.surv_design")
   expect_no_error(print(s))
 })
+
+test_that("surv_design with formula sequencing_rate works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 4, seed = 40)
+  pop <- sim$population
+  design <- surv_design(
+    data = sim$sequences, strata = ~ region,
+    sequencing_rate = ~ n_sequenced / n_positive,
+    population = pop
+  )
+  expect_s3_class(design, "surv_design")
+  expect_true(all(design$strata_info$seq_rate > 0))
+})

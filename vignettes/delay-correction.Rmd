@@ -1,0 +1,93 @@
+---
+title: "Delay-Adjusted Nowcasting"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Delay-Adjusted Nowcasting}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>",
+                      fig.width = 7, fig.height = 4, dev = "png")
+```
+
+## The right-truncation problem
+
+From sample collection to sequence upload, there is a delay of typically
+1--4 weeks. This means that when you look at the latest data, the most
+recent weeks are always incomplete --- not because fewer people were
+infected, but because results have not arrived yet.
+
+If you ignore this and plot raw counts, you see a false decline in the
+most recent weeks. This is called **right-truncation bias**.
+
+## Estimating the delay distribution
+
+survinger fits a parametric delay distribution accounting for the fact
+that we can only observe delays shorter than the time elapsed since
+collection (right-truncation correction).
+
+```{r delay-fit}
+library(survinger)
+data(sarscov2_surveillance)
+
+design <- surv_design(
+  data = sarscov2_surveillance$sequences,
+  strata = ~ region,
+  sequencing_rate = sarscov2_surveillance$population[c("region", "seq_rate")],
+  population = sarscov2_surveillance$population
+)
+
+delay_fit <- surv_estimate_delay(design, distribution = "negbin")
+print(delay_fit)
+plot(delay_fit)
+```
+
+## Reporting probability
+
+Given the fitted delay, we can ask: what fraction of sequences collected
+*d* days ago have been reported by now?
+
+```{r report-prob}
+days <- c(7, 14, 21, 28)
+probs <- surv_reporting_probability(delay_fit, delta = days)
+data.frame(days_ago = days, prob_reported = round(probs, 3))
+```
+
+Sequences collected 7 days ago may only be partially reported, while
+those from 28 days ago are nearly complete.
+
+## Nowcasting
+
+Nowcasting inflates observed counts by dividing by the reporting
+probability, giving a better estimate of the true number:
+
+```{r nowcast, fig.cap = "Observed (grey bars) vs nowcasted (orange line) counts for BA.2.86"}
+nowcast <- surv_nowcast_lineage(design, delay_fit, "BA.2.86")
+plot(nowcast)
+```
+
+The grey bars show what has been observed; the orange line shows the
+delay-corrected estimate. The gap is largest in the most recent weeks.
+
+## Combined design + delay correction
+
+The main inference function applies both corrections simultaneously:
+
+```{r adjusted}
+adjusted <- surv_adjusted_prevalence(design, delay_fit, "BA.2.86")
+print(adjusted)
+```
+
+The `mean_report_prob` column shows how complete each week's data is.
+Low values indicate that the delay correction is doing heavy lifting.
+
+## Choosing a delay distribution
+
+- **`negbin`** (default): Handles overdispersion well. Recommended for
+  most settings.
+- **`poisson`**: Use when delays are very regular (rare).
+- **`lognormal`**: Use when delays have a heavy right tail.
+- **`nonparametric`**: No distributional assumption. Use when you have
+  enough data and suspect the parametric forms do not fit.

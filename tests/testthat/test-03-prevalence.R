@@ -79,3 +79,11 @@ test_that("hajek matches survey::svymean for pooled estimate", {
   survey_est <- as.numeric(coef(survey::svymean(~.target, svy)))
   expect_equal(survinger_est, survey_est, tolerance = 0.001)
 })
+
+test_that("poststratified estimator works", {
+  sim <- surv_simulate(n_regions = 3, n_weeks = 8, seed = 90)
+  d <- surv_design(sim$sequences, ~ region,
+                   sim$population[c("region", "seq_rate")], sim$population)
+  res <- surv_lineage_prevalence(d, "BA.5", method = "poststratified")
+  expect_s3_class(res, "surv_prevalence")
+})
