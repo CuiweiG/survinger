@@ -2,10 +2,13 @@
 % Please edit documentation in R/00-classes.R, R/04-delay.R
 \name{print.surv_nowcast}
 \alias{print.surv_nowcast}
+\alias{as.data.frame.surv_nowcast}
 \alias{surv_nowcast_lineage}
 \title{Nowcast lineage counts correcting for reporting delays}
 \usage{
 \method{print}{surv_nowcast}(x, ...)
+
+\method{as.data.frame}{surv_nowcast}(x, ...)
 
 surv_nowcast_lineage(
   design,

@@ -2,10 +2,13 @@
 % Please edit documentation in R/00-classes.R, R/03-prevalence.R
 \name{print.surv_prevalence}
 \alias{print.surv_prevalence}
+\alias{as.data.frame.surv_prevalence}
 \alias{surv_lineage_prevalence}
 \title{Estimate lineage prevalence with design weights}
 \usage{
 \method{print}{surv_prevalence}(x, ...)
+
+\method{as.data.frame}{surv_prevalence}(x, ...)
 
 surv_lineage_prevalence(
   design,
@@ -17,7 +20,7 @@ surv_lineage_prevalence(
 )
 }
 \arguments{
-\item{x}{Object to print.}
+\item{x}{Object to convert.}
 
 \item{...}{Additional arguments (unused).}
 
@@ -38,6 +41,8 @@ Default 5.}
 }
 \value{
 Invisibly returns the input object.
+
+A data.frame.
 
 A \code{surv_prevalence} object.
 }

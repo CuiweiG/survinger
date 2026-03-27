@@ -40,6 +40,19 @@ surv_lineage_prevalence <- function(design,
   checkmate::assert_number(conf_level, lower = 0.5, upper = 0.999)
   checkmate::assert_count(min_obs, positive = TRUE)
 
+  # Validate lineage exists, suggest closest match if not
+  available_lineages <- unique(design$data[[design$col_lineage]])
+  if (!lineage %in% available_lineages) {
+    distances <- utils::adist(lineage, available_lineages)[1, ]
+    closest <- available_lineages[which.min(distances)]
+    avail_str <- paste(utils::head(sort(available_lineages), 10), collapse = ", ")
+    cli::cli_warn(c(
+      "Lineage {.val {lineage}} not found in data.",
+      "i" = "Available lineages: {avail_str}",
+      "i" = "Did you mean {.val {closest}}?"
+    ))
+  }
+
   dat <- .map_weights_to_obs(design)
   resolved <- .resolve_time_column(dat, time, design$col_date_collected)
   dat <- resolved$data
@@ -103,6 +116,18 @@ surv_naive_prevalence <- function(design, lineage, time = "epiweek",
                                   conf_level = 0.95) {
   .assert_surv_design(design)
   checkmate::assert_string(lineage)
+
+  available_lineages <- unique(design$data[[design$col_lineage]])
+  if (!lineage %in% available_lineages) {
+    distances <- utils::adist(lineage, available_lineages)[1, ]
+    closest <- available_lineages[which.min(distances)]
+    avail_str <- paste(utils::head(sort(available_lineages), 10), collapse = ", ")
+    cli::cli_warn(c(
+      "Lineage {.val {lineage}} not found in data.",
+      "i" = "Available lineages: {avail_str}",
+      "i" = "Did you mean {.val {closest}}?"
+    ))
+  }
 
   dat <- design$data
   resolved <- .resolve_time_column(dat, time, design$col_date_collected)

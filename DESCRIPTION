@@ -22,6 +22,7 @@ Imports:
     checkmate (>= 2.0.0),
     cli (>= 3.0.0),
     dplyr (>= 1.1.0),
+    generics,
     ggplot2 (>= 3.4.0),
     MASS,
     Matrix,

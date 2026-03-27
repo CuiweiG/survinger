@@ -2,10 +2,13 @@
 % Please edit documentation in R/00-classes.R, R/02-allocation.R
 \name{print.surv_allocation}
 \alias{print.surv_allocation}
+\alias{as.data.frame.surv_allocation}
 \alias{surv_optimize_allocation}
 \title{Optimize sequencing allocation across strata}
 \usage{
 \method{print}{surv_allocation}(x, ...)
+
+\method{as.data.frame}{surv_allocation}(x, ...)
 
 surv_optimize_allocation(
   design,
