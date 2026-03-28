@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Alice Gao \email{cuiwei.gao@outlook.com}
+\strong{Maintainer}: CuiweiG \email{48gaocuiwei@gmail.com}
 
 }
 \keyword{internal}

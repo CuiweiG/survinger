@@ -257,8 +257,15 @@ surv_nowcast_lineage <- function(design, delay_fit, lineage = NULL,
     "lognormal" = c(log(mean(delays) + 1), log(0.5))
   )
 
-  fit <- stats::optim(init, negloglik, method = "Nelder-Mead",
-                      control = list(maxit = 5000))
+  # Use Brent for 1D (poisson), Nelder-Mead for 2D (negbin, lognormal)
+  if (length(init) == 1L) {
+    fit <- stats::optim(init, negloglik, method = "Brent",
+                        lower = log(0.01), upper = log(200),
+                        control = list(maxit = 5000))
+  } else {
+    fit <- stats::optim(init, negloglik, method = "Nelder-Mead",
+                        control = list(maxit = 5000))
+  }
 
   switch(distribution,
     "negbin"    = list(mu = exp(fit$par[1]), size = exp(fit$par[2]),
