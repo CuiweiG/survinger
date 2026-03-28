@@ -83,7 +83,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 <img src="man/figures/fig7_detection.png" width="85%" />
 </p>
 
-> **Practical use:** `surv_detection_probability()` computes the probability of detecting ≥1 sequence of a variant at a given prevalence. With current COG-UK sequencing volumes (65,166 sequences over 26 weeks), 95% weekly detection requires ~0.15% prevalence.
+> **Practical use:** `surv_detection_probability()` computes the probability of detecting ≥1 sequence of a variant at a given prevalence. With COG-UK sequencing volumes (n = 65,166 over 26 weeks), 50% weekly detection at 0.03%, 80% at 0.07%, 95% at 0.15% prevalence.
 
 ---
 
