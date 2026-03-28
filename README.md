@@ -96,12 +96,13 @@ Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and 
 > **Method:** Right-truncation-corrected NegBin delay model. Demonstrated on simulated data (COG-UK does not publish upload dates). Recent weeks (▲) inflated by 1/F(Δ) where F is the estimated delay CDF.
 
 ### Figure 5 · Resource allocation optimization
+*Data: ECDC real data (5 EU countries, n = 99,093)*
 
 <p align="center">
 <img src="man/figures/fig5_allocation.png" width="85%" />
 </p>
 
-> **Finding:** MSE-optimal allocation concentrates resources in England (largest population, highest variance contribution). Equal allocation wastes 75% of NI's capacity given its small population.
+> **Finding:** Equal allocation gives 200 to each country regardless of population or variance. MSE-optimal (Neyman) gives Germany 440 but Denmark only 30 — because Germany contributes most to the total variance. The three strategies produce visibly different allocations.
 
 ### Figure 6 · Simulation benchmark: bias vs sequencing inequality
 *Data: Controlled simulation (surv_simulate), 50 replicates × 6 Gini levels*
