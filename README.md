@@ -56,17 +56,18 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ---
 
-## Validated on real UK surveillance data
+## Validated on real surveillance data
 
-Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nations, 26 epiweeks, n = 65,166 real sequences). Data source: [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/). Figure 4 and 6 use controlled simulations.
+Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and **COG-UK individual-level metadata** (4 UK nations, n = 65,166). Data sources: [ECDC Open Data](https://opendata.ecdc.europa.eu/covid19/virusvariant/), [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/).
 
 ### Figure 1 · Sequencing inequality across countries
+*Data: ECDC real data (5 EU countries, n = 99,093)*
 
 <p align="center">
 <img src="man/figures/fig1_inequality.png" width="85%" />
 </p>
 
-> **Observation:** Northern Ireland sequences at 2.9% vs Wales at 15.0% — a 5.1-fold ratio. While modest compared to cross-country comparisons (European rates vary 40×), even this level of inequality introduces measurable bias.
+> **Observation:** Romania sequences 0.3% of cases vs Denmark at 12% — a **40-fold ratio**. This level of inequality is the norm in global genomic surveillance, and it makes naive prevalence estimates systematically biased.
 
 ### Figure 2 · Design weighting corrects systematic bias
 *Data: COG-UK real sequences (n = 65,166)*
