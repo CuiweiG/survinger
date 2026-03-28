@@ -9,7 +9,7 @@
 <!-- badges: start -->
 <p align="center">
 <a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/R--CMD--check-passing-brightgreen" alt="R-CMD-check" /></a>
-<a href="https://CRAN.R-project.org/package=survinger"><img src="https://img.shields.io/badge/CRAN-not%20yet-orange" alt="CRAN" /></a>
+<a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/version-0.1.0-blue" alt="version" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT" /></a>
 <a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/R-%E2%89%A5%204.1.0-blue" alt="R >= 4.1.0" /></a>
 </p>
