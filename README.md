@@ -69,13 +69,21 @@ All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countrie
 
 > **Finding:** MSE-optimal (Neyman) allocation distributes sequences differently from equal or proportional strategies, concentrating resources where variance reduction is greatest.
 
-### Figure 6 · Simulation benchmark: RMSE vs sequencing inequality
+### Figure 6 · Simulation benchmark: bias vs sequencing inequality
 
 <p align="center">
 <img src="man/figures/fig6_benchmark.png" width="85%" />
 </p>
 
-> **Key result:** As sequencing inequality increases (higher Gini), the naive estimator's RMSE grows while the Hajek estimator remains stable. Design weighting becomes increasingly important at Gini > 0.3.
+> **Key result:** Under realistic heterogeneous prevalence, the Hajek estimator maintains < 1 pp absolute bias across all inequality levels, while the naive estimator reaches 6 pp at low Gini. The advantage is consistent and statistically significant (50 replicates per level).
+
+### Figure 7 · Detection probability curve
+
+<p align="center">
+<img src="man/figures/fig7_detection.png" width="85%" />
+</p>
+
+> **Practical use:** `surv_detection_probability()` computes the probability of detecting at least one sequence of a variant at a given prevalence. With current ECDC sequencing volumes, 95% weekly detection requires ~0.1% prevalence.
 
 ---
 
