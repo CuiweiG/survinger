@@ -37,7 +37,7 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 > **The red shaded area is the error you get from ignoring unequal sequencing.** On real ECDC data, the naive estimate (red) overestimates XBB.1.5-like prevalence by up to **14 percentage points** compared to the design-weighted estimate (blue). The bias is largest during the variant's peak — precisely when accurate estimates matter most. Mean absolute bias: 3.8 pp across all weeks.
 
 ### Where does the bias come from?
-*Data: COG-UK real sequences (n = 65,166)*
+*Data: ECDC real sequences (5 EU countries, n = 99,093)*
 
 <p align="center">
 <img src="man/figures/figB_bias_source.png" width="80%" />
