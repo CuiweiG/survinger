@@ -43,12 +43,13 @@ pB <- ggplot2::ggplot(region_stats, ggplot2::aes(
   ggplot2::geom_point(ggplot2::aes(size = .data$pop_share),
                       color = cols[["primary"]], alpha = 0.8) +
   ggplot2::geom_text(ggplot2::aes(label = .data$region),
-                     vjust = -1.5, size = 3.5, fontface = "bold") +
+                     vjust = -1.2, size = 3.5, fontface = "bold") +
   ggplot2::scale_size_continuous(range = c(4, 18),
                                 labels = function(x) paste0(round(x * 100), "%"),
                                 name = "Population share") +
   ggplot2::scale_x_continuous(labels = function(x) paste0(x, "x")) +
-  ggplot2::scale_y_continuous(labels = function(x) paste0(round(x * 100), "%")) +
+  ggplot2::scale_y_continuous(labels = function(x) paste0(round(x * 100), "%"),
+                              expand = ggplot2::expansion(mult = c(0.05, 0.12))) +
   ggplot2::annotate("text", x = 0.3, y = max(region_stats$local_prev) * 0.95,
                     label = "Under-\nrepresented", size = 3, color = cols[["neutral"]], fontface = "italic") +
   ggplot2::annotate("text", x = 2.5, y = max(region_stats$local_prev) * 0.95,
