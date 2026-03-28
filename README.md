@@ -25,9 +25,9 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ---
 
-## Validated on real European surveillance data
+## Validated on real UK surveillance data
 
-Figures 1–3, 5 use **COG-UK individual-level sequence metadata** (4 UK nations, 26 epiweeks, n = 65,166 real sequences). Data source: [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/). Figure 6 uses controlled simulations.
+Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nations, 26 epiweeks, n = 65,166 real sequences). Data source: [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/). Figure 4 and 6 use controlled simulations.
 
 ### Figure 1 · Sequencing inequality across countries
 
@@ -43,7 +43,7 @@ Figures 1–3, 5 use **COG-UK individual-level sequence metadata** (4 UK nations
 <img src="man/figures/fig2_compare.png" width="85%" />
 </p>
 
-> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In higher-inequality settings (e.g., European cross-country, Gini > 0.5), bias exceeds 4 pp (see Fig 6 simulation). The package provides value proportional to inequality.
+> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In simulation with heterogeneous prevalence (Fig 6), naive bias ranges from 2.4–6.0 pp while Hajek remains below 1 pp across all inequality levels. The correction is most impactful when prevalence differs systematically across strata.
 
 ### Figure 3 · Bias structure varies by country and time
 
@@ -75,7 +75,7 @@ Figures 1–3, 5 use **COG-UK individual-level sequence metadata** (4 UK nations
 <img src="man/figures/fig6_benchmark.png" width="85%" />
 </p>
 
-> **Key result:** Under realistic heterogeneous prevalence, the Hajek estimator maintains < 1 pp absolute bias across all inequality levels, while the naive estimator reaches 6 pp at low Gini. The advantage is consistent and statistically significant (50 replicates per level).
+> **Key result:** Under heterogeneous prevalence (5%–30% across strata), the Hajek estimator maintains < 1 pp absolute bias at all Gini levels. The naive estimator shows 2.4–6.0 pp bias. Naive bias is highest when sequencing is relatively equal (Gini = 0.1) because high-sequencing strata no longer dominate the average, yet prevalence heterogeneity remains uncorrected. 50 replicates per level; shaded bands show 95% CI.
 
 ### Figure 7 · Detection probability curve
 
@@ -83,7 +83,7 @@ Figures 1–3, 5 use **COG-UK individual-level sequence metadata** (4 UK nations
 <img src="man/figures/fig7_detection.png" width="85%" />
 </p>
 
-> **Practical use:** `surv_detection_probability()` computes the probability of detecting at least one sequence of a variant at a given prevalence. With current ECDC sequencing volumes, 95% weekly detection requires ~0.1% prevalence.
+> **Practical use:** `surv_detection_probability()` computes the probability of detecting ≥1 sequence of a variant at a given prevalence. With current COG-UK sequencing volumes (65,166 sequences over 26 weeks), 95% weekly detection requires ~0.15% prevalence.
 
 ---
 
@@ -158,7 +158,7 @@ The two packages are **complementary**: use phylosamp to determine total capacit
 - `vignette("survinger")` — Introduction and quick start
 - `vignette("allocation-optimization")` — Resource allocation deep dive
 - `vignette("delay-correction")` — Delay estimation and nowcasting
-- `vignette("real-world-ecdc")` — ECDC case study with real data
+- `vignette("real-world-ecdc")` — Real-world case study (COG-UK / ECDC data)
 
 ## Citation
 
