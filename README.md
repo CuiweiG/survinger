@@ -27,14 +27,14 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ## Why this package is necessary
 
-### Without vs with survinger: wrong decisions from naive estimates
-*Data: Simulated high-inequality setting (Gini = 0.67, rates 0.2%–40%)*
+### Without vs with survinger: different policy decisions on the same data
+*Data: ECDC real sequences (5 EU countries, n = 99,093, 40-fold inequality)*
 
 <p align="center">
 <img src="man/figures/figA_necessity.png" width="95%" />
 </p>
 
-> **Impact:** The naive estimator overestimates prevalence by 14 percentage points on average (32.8% vs true 18.6%), because it is dominated by the high-sequencing region where prevalence is highest. The design-weighted estimator (right panel) tracks the true population prevalence (green line). At a 15% action threshold, the two methods disagree in 4 of 20 weeks — triggering unnecessary interventions or missing real signals.
+> **Impact:** On real ECDC data with 40-fold sequencing inequality across 5 European countries, the naive estimate diverges from the design-weighted estimate by up to 14 percentage points. At a 45% action threshold, the two methods disagree in 5 of 46 weeks — meaning uncorrected surveillance would trigger (or miss) public health interventions incorrectly. Mean absolute bias: 3.8 pp.
 
 ### Where does the bias come from?
 *Data: COG-UK real sequences (n = 65,166)*
