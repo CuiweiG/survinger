@@ -42,8 +42,10 @@ pB <- ggplot2::ggplot(region_stats, ggplot2::aes(
                       color = cols[["primary"]], linewidth = 0.4) +
   ggplot2::geom_point(ggplot2::aes(size = .data$pop_share),
                       color = cols[["primary"]], alpha = 0.8) +
-  ggplot2::geom_text(ggplot2::aes(label = .data$region),
-                     vjust = -1.2, size = 3.5, fontface = "bold") +
+  ggplot2::geom_label(ggplot2::aes(label = .data$region),
+                      vjust = ifelse(region_stats$local_prev > 0.45, 2, -1),
+                      size = 3.5, fontface = "bold", fill = "#FFFFFFCC",
+                      label.size = 0) +
   ggplot2::scale_size_continuous(range = c(4, 18),
                                 labels = function(x) paste0(round(x * 100), "%"),
                                 name = "Population share") +
