@@ -58,7 +58,7 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ## Validated on real surveillance data
 
-Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and **COG-UK individual-level metadata** (4 UK nations, n = 65,166). Data sources: [ECDC Open Data](https://opendata.ecdc.europa.eu/covid19/virusvariant/), [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/).
+All figures use **ECDC COVID-19 variant surveillance data** (5 EU countries, 46 epiweeks, n = 99,093 real sequences). Data source: [ECDC Open Data Portal](https://opendata.ecdc.europa.eu/covid19/virusvariant/). Figure 6 (benchmark) uses controlled simulation — the standard approach for evaluating statistical methods.
 
 ### Figure 1 · Sequencing inequality across countries
 *Data: ECDC real data (5 EU countries, n = 99,093)*
@@ -115,12 +115,13 @@ Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and 
 > **Key result:** Under heterogeneous prevalence (5%–30% across strata), the Hajek estimator maintains 0.6–2.5 pp absolute bias while the naive estimator reaches 3.2–8.7 pp. Both increase monotonically with inequality, but Hajek remains 3–8× lower. 50 replicates per Gini level; shaded bands show 95% CI.
 
 ### Figure 7 · Detection probability curve
+*Data: ECDC real data (5 EU countries, n = 99,093)*
 
 <p align="center">
 <img src="man/figures/fig7_detection.png" width="85%" />
 </p>
 
-> **Practical use:** `surv_detection_probability()` computes the probability of detecting ≥1 sequence of a variant at a given prevalence. With COG-UK sequencing volumes (n = 65,166 over 26 weeks), 50% weekly detection at 0.03%, 80% at 0.07%, 95% at 0.15% prevalence.
+> **Practical use:** `surv_detection_probability()` computes weekly detection probability as a function of true variant prevalence, accounting for per-stratum sequencing volumes. With ECDC's 5-country design, 95% weekly detection is achieved at very low prevalence due to the large total sample.
 
 ---
 
