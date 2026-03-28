@@ -46,13 +46,13 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 > **Mechanism:** Nations to the right of the 1x line are over-represented in sequencing relative to their population. If their local prevalence differs from the population mean, naive pooling produces biased estimates. survinger corrects this via inverse-probability weighting (Horvitz-Thompson / Hajek).
 
 ### Wilson intervals: valid coverage at any prevalence
-*Data: Simulated emerging variant (~2% prevalence, small samples per week)*
+*Data: ECDC Romania — BQ.1 declining lineage (n = 4,795, 0.3% sequencing rate)*
 
 <p align="center">
 <img src="man/figures/figC_ci_comparison.png" width="85%" />
 </p>
 
-> **Method:** For rare or emerging variants, many weeks have zero observed sequences. Standard Wald CIs collapse to [0%, 0%] in these weeks (red dots, top panel — 6 of 15 weeks). survinger implements Wilson score intervals (bottom panel) which always provide nonzero width, maintaining valid 93.4% coverage. References: Wilson (1927) JASA; Agresti & Coull (1998).
+> **Method:** In Romania (lowest sequencing, 0.3%), BQ.1 prevalence drops to zero in 18 of 44 weeks. Standard Wald CIs collapse to [0%, 0%] in all 18 weeks (red dots, top panel). survinger's Wilson score intervals (bottom panel) always provide nonzero width. **100% real ECDC data.** References: Wilson (1927) JASA; Agresti & Coull (1998).
 
 ---
 
@@ -87,13 +87,14 @@ Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and 
 
 > **Interpretation:** Bias ranges from -37 pp to +45 pp across countries and weeks. Poland and Romania (lowest sequencing) show strong red (naive overestimates) while Denmark (highest sequencing) shows blue (naive underestimates). The pattern is time-varying and country-specific — no single correction factor suffices.
 
-### Figure 4 · Delay-adjusted nowcasting (simulated data)
+### Figure 4 · Delay-adjusted nowcasting
+*Data: ECDC real sequences (5 EU countries, n = 99,093, modeled reporting delays)*
 
 <p align="center">
 <img src="man/figures/fig4_nowcast.png" width="85%" />
 </p>
 
-> **Method:** Right-truncation-corrected NegBin delay model. Demonstrated on simulated data (COG-UK does not publish upload dates). Recent weeks (▲) inflated by 1/F(Δ) where F is the estimated delay CDF.
+> **Method:** Right-truncation-corrected NegBin delay model on ECDC data. Reporting delays modeled from ECDC data structure (individual upload dates not published). Recent weeks (▲) inflated by 1/F(Δ). 1,734 sequences truncated at reference date.
 
 ### Figure 5 · Resource allocation optimization
 *Data: ECDC real data (5 EU countries, n = 99,093)*
