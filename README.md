@@ -38,6 +38,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 > **Observation:** Northern Ireland sequences at 2.9% vs Wales at 15.0% — a 5.1-fold ratio. While modest compared to cross-country comparisons (European rates vary 40×), even this level of inequality introduces measurable bias.
 
 ### Figure 2 · Design weighting corrects systematic bias
+*Data: COG-UK real sequences (n = 65,166)*
 
 <p align="center">
 <img src="man/figures/fig2_compare.png" width="85%" />
@@ -46,6 +47,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 > **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In simulation with heterogeneous prevalence (Fig 6), naive bias reaches 3.2–8.7 pp while Hajek stays at 0.6–2.5 pp. The correction is most impactful when prevalence differs systematically across strata.
 
 ### Figure 3 · Bias structure varies by country and time
+*Data: COG-UK real sequences (n = 65,166)*
 
 <p align="center">
 <img src="man/figures/fig3_bias_heatmap.png" width="90%" />
@@ -70,6 +72,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 > **Finding:** MSE-optimal allocation concentrates resources in England (largest population, highest variance contribution). Equal allocation wastes 75% of NI's capacity given its small population.
 
 ### Figure 6 · Simulation benchmark: bias vs sequencing inequality
+*Data: Controlled simulation (surv_simulate), 50 replicates × 6 Gini levels*
 
 <p align="center">
 <img src="man/figures/fig6_benchmark.png" width="85%" />
