@@ -25,6 +25,37 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ---
 
+## Why this package is necessary
+
+### Without vs with survinger: different policy decisions
+*Data: COG-UK real sequences (n = 65,166)*
+
+<p align="center">
+<img src="man/figures/figA_necessity.png" width="95%" />
+</p>
+
+> **Impact:** At a hypothetical 20% action threshold, naive and design-weighted estimates disagree on whether to trigger public health response in multiple weeks. Using uncorrected estimates risks both false alarms and missed interventions.
+
+### Where does the bias come from?
+*Data: COG-UK real sequences (n = 65,166)*
+
+<p align="center">
+<img src="man/figures/figB_bias_source.png" width="80%" />
+</p>
+
+> **Mechanism:** Nations to the right of the 1x line are over-represented in sequencing relative to their population. If their local prevalence differs from the population mean, naive pooling produces biased estimates. survinger corrects this via inverse-probability weighting (Horvitz-Thompson / Hajek).
+
+### Wilson intervals: valid coverage at any prevalence
+*Data: COG-UK real sequences (n = 65,166)*
+
+<p align="center">
+<img src="man/figures/figC_ci_comparison.png" width="85%" />
+</p>
+
+> **Method:** Standard Wald CIs collapse to zero width when p̂ = 0 (coverage failure). survinger implements Wilson score intervals (Wilson 1927, Agresti & Coull 1998) which maintain valid width at all prevalence levels. Coverage: 91.7% in simulation validation.
+
+---
+
 ## Validated on real UK surveillance data
 
 Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nations, 26 epiweeks, n = 65,166 real sequences). Data source: [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/). Figure 4 and 6 use controlled simulations.
