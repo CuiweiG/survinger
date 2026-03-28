@@ -46,13 +46,13 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 > **Mechanism:** Nations to the right of the 1x line are over-represented in sequencing relative to their population. If their local prevalence differs from the population mean, naive pooling produces biased estimates. survinger corrects this via inverse-probability weighting (Horvitz-Thompson / Hajek).
 
 ### Wilson intervals: valid coverage at any prevalence
-*Data: COG-UK real sequences (n = 65,166)*
+*Data: Simulated emerging variant (~2% prevalence, small samples per week)*
 
 <p align="center">
 <img src="man/figures/figC_ci_comparison.png" width="85%" />
 </p>
 
-> **Method:** Standard Wald CIs collapse to zero width when p̂ = 0 (coverage failure). survinger implements Wilson score intervals (Wilson 1927, Agresti & Coull 1998) which maintain valid width at all prevalence levels. Coverage: 91.7% in simulation validation.
+> **Method:** For rare or emerging variants, many weeks have zero observed sequences. Standard Wald CIs collapse to [0%, 0%] in these weeks (red dots, top panel — 6 of 15 weeks). survinger implements Wilson score intervals (bottom panel) which always provide nonzero width, maintaining valid 93.4% coverage. References: Wilson (1927) JASA; Agresti & Coull (1998).
 
 ---
 
