@@ -27,14 +27,14 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ## Why this package is necessary
 
-### Without vs with survinger: different policy decisions on the same data
+### The cost of ignoring sequencing inequality
 *Data: ECDC real sequences (5 EU countries, n = 99,093, 40-fold inequality)*
 
 <p align="center">
-<img src="man/figures/figA_necessity.png" width="95%" />
+<img src="man/figures/figA_necessity.png" width="90%" />
 </p>
 
-> **Impact:** On real ECDC data with 40-fold sequencing inequality across 5 European countries, the naive estimate diverges from the design-weighted estimate by up to 14 percentage points. At a 45% action threshold, the two methods disagree in 5 of 46 weeks — meaning uncorrected surveillance would trigger (or miss) public health interventions incorrectly. Mean absolute bias: 3.8 pp.
+> **The red shaded area is the error you get from ignoring unequal sequencing.** On real ECDC data, the naive estimate (red) overestimates XBB.1.5-like prevalence by up to **14 percentage points** compared to the design-weighted estimate (blue). The bias is largest during the variant's peak — precisely when accurate estimates matter most. Mean absolute bias: 3.8 pp across all weeks.
 
 ### Where does the bias come from?
 *Data: COG-UK real sequences (n = 65,166)*
