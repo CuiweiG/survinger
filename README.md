@@ -27,7 +27,7 @@ In pathogen genomic surveillance, **sequencing rates vary up to 40-fold across r
 
 ## Validated on real European surveillance data
 
-All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countries, 46 epiweeks, n = 99,093 sequences). Data source: [ECDC Open Data Portal](https://opendata.ecdc.europa.eu/covid19/virusvariant/).
+Figures 1–3, 5 use **COG-UK individual-level sequence metadata** (4 UK nations, 26 epiweeks, n = 65,166 real sequences). Data source: [COG-UK CLIMB](https://cog-uk.s3.climb.ac.uk/). Figure 6 uses controlled simulations.
 
 ### Figure 1 · Sequencing inequality across countries
 
@@ -35,7 +35,7 @@ All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countrie
 <img src="man/figures/fig1_inequality.png" width="85%" />
 </p>
 
-> **Observation:** Denmark sequences 40× more cases than Romania. This structural inequality is the norm in real surveillance systems — not the exception.
+> **Observation:** Northern Ireland sequences at 2.9% vs Wales at 15.0% — a 5.1-fold ratio. While modest compared to cross-country comparisons (European rates vary 40×), even this level of inequality introduces measurable bias.
 
 ### Figure 2 · Design weighting corrects systematic bias
 
@@ -43,7 +43,7 @@ All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countrie
 <img src="man/figures/fig2_compare.png" width="85%" />
 </p>
 
-> **Result:** The Hajek-weighted estimator (blue) diverges from the naive estimator (red) by an average of 3.8 percentage points. The naive estimate is systematically biased toward Denmark's local prevalence.
+> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In higher-inequality settings (e.g., European cross-country, Gini > 0.5), bias exceeds 4 pp (see Fig 6 simulation). The package provides value proportional to inequality.
 
 ### Figure 3 · Bias structure varies by country and time
 
@@ -51,15 +51,15 @@ All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countrie
 <img src="man/figures/fig3_bias_heatmap.png" width="90%" />
 </p>
 
-> **Interpretation:** Poland and Romania (low-sequencing) show persistent positive bias (red = naive overestimates), while Denmark and Germany show negative bias. The spatial pattern is non-uniform and time-varying.
+> **Interpretation:** Northern Ireland (lowest sequencing) shows distinct bias patterns compared to England and Wales. The bias structure is time-varying and nation-specific, confirming that a single pooled estimate is insufficient.
 
-### Figure 4 · Delay-adjusted nowcasting
+### Figure 4 · Delay-adjusted nowcasting (simulated data)
 
 <p align="center">
 <img src="man/figures/fig4_nowcast.png" width="85%" />
 </p>
 
-> **Method:** Right-truncation-corrected negative binomial delay model. Recent weeks (▲) are inflated by 1/F(Δ) where F is the estimated delay CDF.
+> **Method:** Right-truncation-corrected NegBin delay model. Demonstrated on simulated data (COG-UK does not publish upload dates). Recent weeks (▲) inflated by 1/F(Δ) where F is the estimated delay CDF.
 
 ### Figure 5 · Resource allocation optimization
 
@@ -67,7 +67,7 @@ All figures below use **ECDC COVID-19 variant surveillance data** (5 EU countrie
 <img src="man/figures/fig5_allocation.png" width="85%" />
 </p>
 
-> **Finding:** MSE-optimal (Neyman) allocation distributes sequences differently from equal or proportional strategies, concentrating resources where variance reduction is greatest.
+> **Finding:** MSE-optimal allocation concentrates resources in England (largest population, highest variance contribution). Equal allocation wastes 75% of NI's capacity given its small population.
 
 ### Figure 6 · Simulation benchmark: bias vs sequencing inequality
 
