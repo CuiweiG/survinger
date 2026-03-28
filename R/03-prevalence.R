@@ -84,8 +84,8 @@ surv_lineage_prevalence <- function(design,
       time = t, lineage = lineage, n_obs = nrow(d),
       n_target = sum(d$.is_target),
       prevalence = result$estimate, se = result$se,
-      ci_lower = max(0, result$estimate - z_alpha * result$se),
-      ci_upper = min(1, result$estimate + z_alpha * result$se),
+      ci_lower = .wilson_ci(result$estimate, result$effective_n, z_alpha, "lower"),
+      ci_upper = .wilson_ci(result$estimate, result$effective_n, z_alpha, "upper"),
       effective_n = result$effective_n, flag = "ok"
     )
   })
@@ -147,8 +147,8 @@ surv_naive_prevalence <- function(design, lineage, time = "epiweek",
     tibble::tibble(
       time = t, lineage = lineage, n_obs = n, n_target = n_t,
       prevalence = p, se = se_val,
-      ci_lower = max(0, p - z_alpha * se_val),
-      ci_upper = min(1, p + z_alpha * se_val),
+      ci_lower = .wilson_ci(p, n, z_alpha, "lower"),
+      ci_upper = .wilson_ci(p, n, z_alpha, "upper"),
       effective_n = as.double(n), flag = "ok"
     )
   })
@@ -248,4 +248,31 @@ surv_naive_prevalence <- function(design, lineage, time = "epiweek",
       .groups = "drop"
     )
   sqrt(sum(ve$v_h))
+}
+
+
+# ---- Wilson confidence interval ----
+
+#' Wilson score interval for a proportion
+#'
+#' Provides valid coverage even at p-hat = 0 or 1, unlike Wald.
+#' Reference: Wilson (1927) JASA; Agresti & Coull (1998) TAS.
+#'
+#' @param p Estimated proportion.
+#' @param n Effective sample size.
+#' @param z Critical value (e.g., qnorm(0.975) for 95% CI).
+#' @param side Character: "lower" or "upper".
+#' @return Scalar bound, clamped to 0--1.
+#' @keywords internal
+.wilson_ci <- function(p, n, z, side = c("lower", "upper")) {
+  side <- match.arg(side)
+  if (is.na(p) || is.na(n) || n <= 0) return(NA_real_)
+  denom <- 1 + z^2 / n
+  center <- (p + z^2 / (2 * n)) / denom
+  margin <- z * sqrt(p * (1 - p) / n + z^2 / (4 * n^2)) / denom
+  if (side == "lower") {
+    return(max(0, center - margin))
+  } else {
+    return(min(1, center + margin))
+  }
 }
