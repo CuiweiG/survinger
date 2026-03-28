@@ -70,13 +70,13 @@ Figures use **ECDC variant surveillance data** (5 EU countries, n = 99,093) and 
 > **Observation:** Romania sequences 0.3% of cases vs Denmark at 12% — a **40-fold ratio**. This level of inequality is the norm in global genomic surveillance, and it makes naive prevalence estimates systematically biased.
 
 ### Figure 2 · Design weighting corrects systematic bias
-*Data: COG-UK real sequences (n = 65,166)*
+*Data: ECDC real sequences (5 EU countries, n = 99,093)*
 
 <p align="center">
 <img src="man/figures/fig2_compare.png" width="85%" />
 </p>
 
-> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In simulation with heterogeneous prevalence (Fig 6), naive bias reaches 3.2–8.7 pp while Hajek stays at 0.6–2.5 pp. The correction is most impactful when prevalence differs systematically across strata.
+> **Result:** With 40-fold sequencing inequality (Gini = 0.54), the naive estimate diverges from the design-weighted estimate by **up to 14 percentage points** (mean 3.8 pp). The red shaded area is the bias eliminated by design weighting. The bias is largest during the variant's peak — precisely when accurate estimates matter most.
 
 ### Figure 3 · Bias structure varies by country and time
 *Data: COG-UK real sequences (n = 65,166)*
