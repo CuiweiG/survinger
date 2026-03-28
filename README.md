@@ -43,7 +43,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 <img src="man/figures/fig2_compare.png" width="85%" />
 </p>
 
-> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In simulation with heterogeneous prevalence (Fig 6), naive bias ranges from 2.4–6.0 pp while Hajek remains below 1 pp across all inequality levels. The correction is most impactful when prevalence differs systematically across strata.
+> **Result:** With UK's moderate inequality (Gini = 0.21), the mean absolute difference is 0.4 pp. In simulation with heterogeneous prevalence (Fig 6), naive bias reaches 3.2–8.7 pp while Hajek stays at 0.6–2.5 pp. The correction is most impactful when prevalence differs systematically across strata.
 
 ### Figure 3 · Bias structure varies by country and time
 
@@ -75,7 +75,7 @@ Figures 1–3, 5, 7 use **COG-UK individual-level sequence metadata** (4 UK nati
 <img src="man/figures/fig6_benchmark.png" width="85%" />
 </p>
 
-> **Key result:** Under heterogeneous prevalence (5%–30% across strata), the Hajek estimator maintains < 1 pp absolute bias at all Gini levels. The naive estimator shows 2.4–6.0 pp bias. Naive bias is highest when sequencing is relatively equal (Gini = 0.1) because high-sequencing strata no longer dominate the average, yet prevalence heterogeneity remains uncorrected. 50 replicates per level; shaded bands show 95% CI.
+> **Key result:** Under heterogeneous prevalence (5%–30% across strata), the Hajek estimator maintains 0.6–2.5 pp absolute bias while the naive estimator reaches 3.2–8.7 pp. Both increase monotonically with inequality, but Hajek remains 3–8× lower. 50 replicates per Gini level; shaded bands show 95% CI.
 
 ### Figure 7 · Detection probability curve
 
