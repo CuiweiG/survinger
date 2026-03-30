@@ -51,20 +51,27 @@ remotes::install_github("CuiweiG/survinger")
 ```r
 library(survinger)
 
+# Simulate surveillance data (or use your own)
+sim <- surv_simulate(n_regions = 5, n_weeks = 26, seed = 42)
+
 # Create design from surveillance data
 design <- surv_design(
-  data = sequences, strata = ~ region,
-  sequencing_rate = population[c("region", "seq_rate")],
-  population = population
+  data = sim$sequences, strata = ~ region,
+  sequencing_rate = sim$population[c("region", "seq_rate")],
+  population = sim$population
 )
 
 # Corrected prevalence (one line)
 surv_lineage_prevalence(design, "BA.2.86")
 
-# Or even simpler:
-surv_estimate(data, ~ region, rates, pop, "BA.2.86")
+# Or even simpler — single pipe-friendly call:
+surv_estimate(
+  data = sim$sequences, strata = ~ region,
+  sequencing_rate = sim$population[c("region", "seq_rate")],
+  population = sim$population, lineage = "BA.2.86"
+)
 
-# Full pipeline
+# Full pipeline with delay correction
 delay <- surv_estimate_delay(design)
 surv_adjusted_prevalence(design, delay, "BA.2.86")
 
@@ -78,19 +85,64 @@ surv_detection_probability(design, true_prevalence = 0.01)
 surv_report(design)
 ```
 
-## Core functions
+## Functions
+
+### Design & data
 
 | Function | Purpose |
 |----------|---------|
 | `surv_design()` | Create design with inverse-probability weights |
+| `surv_simulate()` | Generate synthetic surveillance data |
+| `surv_filter()` | Subset a design by filter criteria |
+| `surv_update_rates()` | Update sequencing rates |
+| `surv_set_weights()` | Override design weights |
+
+### Prevalence estimation
+
+| Function | Purpose |
+|----------|---------|
 | `surv_lineage_prevalence()` | Hajek / HT / post-stratified prevalence |
-| `surv_optimize_allocation()` | Neyman allocation (3 objectives) |
+| `surv_naive_prevalence()` | Unweighted baseline prevalence |
+| `surv_prevalence_by()` | Prevalence by subgroup (region, source, etc.) |
+| `surv_estimate()` | Pipe-friendly one-call analysis |
+
+### Delay correction & nowcasting
+
+| Function | Purpose |
+|----------|---------|
 | `surv_estimate_delay()` | Right-truncation-corrected delay fitting |
+| `surv_reporting_probability()` | Cumulative reporting probability |
+| `surv_nowcast_lineage()` | Delay-adjusted nowcast |
 | `surv_adjusted_prevalence()` | Combined design + delay correction |
+
+### Resource allocation
+
+| Function | Purpose |
+|----------|---------|
+| `surv_optimize_allocation()` | Neyman allocation (3 objectives) |
+| `surv_compare_allocations()` | Benchmark all allocation strategies |
+| `surv_required_sequences()` | Sample size for target detection power |
+
+### Diagnostics & reporting
+
+| Function | Purpose |
+|----------|---------|
 | `surv_detection_probability()` | Variant detection power |
+| `surv_power_curve()` | Detection probability across prevalence range |
+| `surv_compare_estimates()` | Weighted vs naive side-by-side plot |
+| `surv_design_effect()` | Design effect over time |
+| `surv_sensitivity()` | Sensitivity analysis across all methods |
 | `surv_report()` | Surveillance system diagnostic |
 | `surv_quality()` | One-row quality metrics |
-| `tidy()` / `glance()` | Tidyverse integration |
+
+### Tidyverse integration
+
+| Function | Purpose |
+|----------|---------|
+| `tidy()` / `glance()` | Broom-style tidying for all result objects |
+| `surv_bind()` | Combine multiple prevalence estimates |
+| `surv_table()` | Publication-ready formatted table |
+| `theme_survinger()` | Publication-quality ggplot2 theme |
 
 ## How it differs from existing tools
 
