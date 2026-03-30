@@ -2,8 +2,8 @@ Package: survinger
 Title: Design-Adjusted Inference for Pathogen Lineage Surveillance
 Version: 0.1.0
 Authors@R:
-    person("CuiweiG", , , "48gaocuiwei@gmail.com",
-           role = c("aut", "cre"))
+    person("Cuiwei", "Gao", , "48gaocuiwei@gmail.com",
+           role = c("aut", "cre", "cph"))
 Description: Provides tools for optimizing sequencing resource allocation
     and estimating pathogen lineage prevalence under real-world genomic
     surveillance conditions. Implements constrained allocation optimization
@@ -35,10 +35,8 @@ Suggests:
     survey,
     tidyr,
     vctrs,
-    bench,
     covr,
     knitr,
-    pkgdown,
     rmarkdown,
     scales,
     testthat (>= 3.0.0),

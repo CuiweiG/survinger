@@ -58,7 +58,18 @@ surv_simulate <- function(n_regions = 5L,
   checkmate::assert_character(sources, min.len = 1L)
   checkmate::assert_numeric(source_weights, len = length(sources), lower = 0)
 
-  if (!is.null(seed)) set.seed(seed)
+  if (!is.null(seed)) {
+    old_seed <- if (exists(".Random.seed", envir = globalenv()))
+      get(".Random.seed", envir = globalenv()) else NULL
+    on.exit({
+      if (is.null(old_seed)) {
+        rm(".Random.seed", envir = globalenv())
+      } else {
+        assign(".Random.seed", old_seed, envir = globalenv())
+      }
+    }, add = TRUE)
+    set.seed(seed)
+  }
 
   region_names <- paste0("Region_", LETTERS[seq_len(n_regions)])
 
