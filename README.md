@@ -123,7 +123,7 @@ surv_report(design)
 ```bibtex
 @Manual{survinger2026,
   title = {survinger: Design-Adjusted Inference for Pathogen Lineage Surveillance},
-  author = {CuiweiG},
+  author = {Cuiwei Gao},
   year = {2026},
   note = {R package version 0.1.0},
   url = {https://github.com/CuiweiG/survinger}
@@ -132,4 +132,4 @@ surv_report(design)
 
 ## License
 
-MIT © 2026 CuiweiG
+MIT © 2026 Cuiwei Gao

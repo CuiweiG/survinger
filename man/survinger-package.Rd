@@ -17,7 +17,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: CuiweiG \email{48gaocuiwei@gmail.com}
+\strong{Maintainer}: Cuiwei Gao \email{48gaocuiwei@gmail.com} [copyright holder]
 
 }
 \keyword{internal}
