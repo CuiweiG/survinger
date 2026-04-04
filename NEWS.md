@@ -1,3 +1,10 @@
+# survinger 0.1.1
+
+* Fix test failure on M1 Mac (ARM64): Wilson CI is not centred
+  on the point estimate by construction. Added floating-point
+  tolerance to the CI-containment test (test-03-prevalence.R:63).
+  Only the test was affected; no changes to estimation code.
+
 # survinger 0.1.0
 
 * Initial release.
