@@ -53,15 +53,19 @@ test_that("min_obs filtering works", {
   expect_true(all(prev$estimates$flag == "insufficient_obs"))
 })
 
-test_that("CI contains point estimate", {
+test_that("CI contains point estimate (within numerical tolerance)", {
   sim <- surv_simulate(n_regions = 3, n_weeks = 10, seed = 50)
   design <- surv_design(sim$sequences, ~ region,
                         sim$population[c("region", "seq_rate")], sim$population)
   prev <- surv_lineage_prevalence(design, "BA.2.86")
   valid <- prev$estimates$flag == "ok"
   est <- prev$estimates[valid, ]
-  expect_true(all(est$prevalence >= est$ci_lower))
-  expect_true(all(est$prevalence <= est$ci_upper))
+  # Wilson CI is not centred on the point estimate; allow
+  # small numerical tolerance for floating-point differences
+  # across platforms (ARM64 / x86_64).
+  tol <- 1e-10
+  expect_true(all(est$prevalence >= est$ci_lower - tol))
+  expect_true(all(est$prevalence <= est$ci_upper + tol))
 })
 
 test_that("hajek matches survey::svymean for pooled estimate", {

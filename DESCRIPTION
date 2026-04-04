@@ -1,6 +1,6 @@
 Package: survinger
 Title: Design-Adjusted Inference for Pathogen Lineage Surveillance
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
     person("Cuiwei", "Gao", , "48gaocuiwei@gmail.com",
            role = c("aut", "cre", "cph"))
