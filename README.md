@@ -2,6 +2,7 @@
 <p align="center"><em>Design-adjusted inference for pathogen lineage surveillance<br>under unequal sequencing and reporting delays</em></p>
 
 <p align="center">
+<a href="https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml"><img src="https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml/badge.svg" alt="R-CMD-check" /></a>
 <a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/version-0.1.1-blue" alt="version" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT" /></a>
 </p>
