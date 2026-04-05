@@ -1,0 +1,96 @@
+url: https://cuiweig.github.io/survinger
+
+template:
+  bootstrap: 5
+  bootswatch: flatly
+
+navbar:
+  structure:
+    left: [intro, reference, articles, news]
+  components:
+    intro:
+      text: Get started
+      href: articles/survinger.html
+
+home:
+  links:
+    - text: GitHub repository
+      href: https://github.com/CuiweiG/survinger
+
+reference:
+  - title: Design construction
+    desc: Create and modify surveillance designs with inverse-probability weights.
+    contents:
+      - surv_design
+      - surv_update_rates
+      - surv_set_weights
+      - surv_filter
+
+  - title: Prevalence estimation
+    desc: Weighted and unweighted lineage prevalence estimators.
+    contents:
+      - surv_lineage_prevalence
+      - surv_naive_prevalence
+      - surv_prevalence_by
+      - surv_estimate
+
+  - title: Delay correction & nowcasting
+    desc: Right-truncation-corrected delay fitting and delay-adjusted nowcasts.
+    contents:
+      - surv_estimate_delay
+      - surv_reporting_probability
+      - surv_nowcast_lineage
+      - surv_adjusted_prevalence
+
+  - title: Resource allocation
+    desc: Optimise sequencing budgets across strata.
+    contents:
+      - surv_optimize_allocation
+      - surv_compare_allocations
+      - surv_required_sequences
+
+  - title: Diagnostics & reporting
+    desc: Power analysis, design effects, sensitivity, and one-page reports.
+    contents:
+      - surv_detection_probability
+      - surv_power_curve
+      - surv_design_effect
+      - surv_sensitivity
+      - surv_report
+      - surv_quality
+
+  - title: Visualisation
+    desc: Plot methods and comparison helpers.
+    contents:
+      - surv_compare_estimates
+      - surv_plot_sequencing_rates
+      - surv_plot_allocation
+      - theme_survinger
+      - starts_with("plot.")
+
+  - title: Tidyverse integration
+    desc: Broom-style tidying and table helpers.
+    contents:
+      - starts_with("tidy.")
+      - starts_with("glance.")
+      - surv_bind
+      - surv_table
+
+  - title: Simulation
+    desc: Generate synthetic surveillance datasets for testing and benchmarking.
+    contents:
+      - surv_simulate
+
+  - title: Package
+    desc: Package-level documentation.
+    contents:
+      - survinger-package
+
+articles:
+  - title: Vignettes
+    navbar: ~
+    contents:
+      - survinger
+      - allocation-optimization
+      - delay-correction
+      - real-world-ecdc
