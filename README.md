@@ -3,7 +3,7 @@
 
 <p align="center">
 <a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/R--CMD--check-passing-brightgreen" alt="R-CMD-check" /></a>
-<a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/version-0.1.0-blue" alt="version" /></a>
+<a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/version-0.1.1-blue" alt="version" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT" /></a>
 </p>
 
@@ -177,7 +177,7 @@ surv_report(design)
   title = {survinger: Design-Adjusted Inference for Pathogen Lineage Surveillance},
   author = {Cuiwei Gao},
   year = {2026},
-  note = {R package version 0.1.0},
+  note = {R package version 0.1.1},
   url = {https://github.com/CuiweiG/survinger}
 }
 ```
