@@ -89,6 +89,9 @@ reference:
   - title: "Other"
     contents:
       - matches(".")
+  - title: "Other"
+    contents:
+      - matches(".")
 
 articles:
   - title: Vignettes
