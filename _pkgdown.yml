@@ -86,6 +86,10 @@ reference:
     contents:
       - survinger-package
 
+  - title: "Other"
+    contents:
+      - matches(".")
+
 articles:
   - title: Vignettes
     navbar: ~
