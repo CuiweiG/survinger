@@ -3,6 +3,10 @@
 *Design-adjusted inference for pathogen lineage surveillance  
 under unequal sequencing and reporting delays*
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/survinger)](https://CRAN.R-project.org/package=survinger)
+[![CRAN
+downloads](https://cranlogs.r-pkg.org/badges/grand-total/survinger)](https://CRAN.R-project.org/package=survinger)
 [![R-CMD-check](https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml)
 [![version](https://img.shields.io/badge/version-0.1.1-blue)](https://github.com/CuiweiG/survinger)
 [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
