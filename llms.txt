@@ -53,8 +53,12 @@ sequencing inequality.
 ## Installation
 
 ``` r
+# Stable release from CRAN
+install.packages("survinger")
+
+# Development version from GitHub
 # install.packages("remotes")
-remotes::install_github("CuiweiG/survinger")
+# remotes::install_github("CuiweiG/survinger")
 ```
 
 ## Quick example
