@@ -44,8 +44,12 @@ In controlled simulation (50 replicates × 6 inequality levels), the Hajek estim
 ## Installation
 
 ```r
+# Stable release from CRAN
+install.packages("survinger")
+
+# Development version from GitHub
 # install.packages("remotes")
-remotes::install_github("CuiweiG/survinger")
+# remotes::install_github("CuiweiG/survinger")
 ```
 
 ## Quick example
