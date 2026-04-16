@@ -13,7 +13,8 @@ Description: Provides tools for optimizing sequencing resource allocation
     right-censored reporting data, and combined design-weighted
     delay-corrected inference with uncertainty propagation.
 License: MIT + file LICENSE
-URL: https://github.com/CuiweiG/survinger
+URL: https://github.com/CuiweiG/survinger,
+    https://cuiweig.github.io/survinger
 BugReports: https://github.com/CuiweiG/survinger/issues
 Depends:
     R (>= 4.1.0)
