@@ -11,3 +11,6 @@
 ^cran-comments\.md$
 ^doc$
 ^Meta$
+^CONTRIBUTING\.md$
+^CODE_OF_CONDUCT\.md$
+^codemeta\.json$
