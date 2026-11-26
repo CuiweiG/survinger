@@ -39,6 +39,7 @@ The package provides three core capabilities:
 ## Quick start
 
 ``` r
+
 library(survinger)
 
 # Load example data (simulated, 5 regions, 26 weeks)
@@ -72,6 +73,7 @@ The core value proposition: **design-weighted estimates correct for
 sequencing inequality.**
 
 ``` r
+
 weighted <- surv_lineage_prevalence(design, "BA.2.86", method = "hajek")
 naive <- surv_naive_prevalence(design, "BA.2.86")
 surv_compare_estimates(weighted, naive)
@@ -91,6 +93,7 @@ If you have 500 sequencing slots this week, how should you distribute
 them?
 
 ``` r
+
 alloc <- surv_optimize_allocation(design, "min_mse", total_capacity = 500)
 print(alloc)
 #> ── Optimal Sequencing Allocation ───────────────────────────────────────────────
@@ -111,6 +114,7 @@ print(alloc)
 Compare with alternative strategies:
 
 ``` r
+
 surv_compare_allocations(design, total_capacity = 500)
 #> # A tibble: 5 × 4
 #>   strategy      total_mse detection_prob  imbalance
@@ -127,6 +131,7 @@ surv_compare_allocations(design, total_capacity = 500)
 Estimate the reporting delay distribution and nowcast recent counts:
 
 ``` r
+
 delay_fit <- surv_estimate_delay(design)
 print(delay_fit)
 #> ── Reporting Delay Distribution ────────────────────────────────────────────────
@@ -152,6 +157,7 @@ The main inference function applies both design weighting and delay
 correction simultaneously:
 
 ``` r
+
 adjusted <- surv_adjusted_prevalence(design, delay_fit, "BA.2.86")
 print(adjusted)
 #> ── Design-Weighted Delay-Adjusted Prevalence ───────────────────────────────────
@@ -179,6 +185,7 @@ print(adjusted)
 How likely is the current system to detect a variant at 1% prevalence?
 
 ``` r
+
 det <- surv_detection_probability(design, true_prevalence = 0.01)
 cat("Weekly detection probability:", round(det$overall, 3), "\n")
 #> Weekly detection probability: 0.406

@@ -17,6 +17,7 @@ that we can only observe delays shorter than the time elapsed since
 collection (right-truncation correction).
 
 ``` r
+
 library(survinger)
 data(sarscov2_surveillance)
 
@@ -50,6 +51,7 @@ Given the fitted delay, we can ask: what fraction of sequences collected
 *d* days ago have been reported by now?
 
 ``` r
+
 days <- c(7, 14, 21, 28)
 probs <- surv_reporting_probability(delay_fit, delta = days)
 data.frame(days_ago = days, prob_reported = round(probs, 3))
@@ -69,6 +71,7 @@ Nowcasting inflates observed counts by dividing by the reporting
 probability, giving a better estimate of the true number:
 
 ``` r
+
 nowcast <- surv_nowcast_lineage(design, delay_fit, "BA.2.86")
 plot(nowcast)
 ```
@@ -86,6 +89,7 @@ delay-corrected estimate. The gap is largest in the most recent weeks.
 The main inference function applies both corrections simultaneously:
 
 ``` r
+
 adjusted <- surv_adjusted_prevalence(design, delay_fit, "BA.2.86")
 print(adjusted)
 #> ── Design-Weighted Delay-Adjusted Prevalence ───────────────────────────────────

@@ -15,8 +15,11 @@ Useful links:
 
 - <https://github.com/CuiweiG/survinger>
 
+- <https://cuiweig.github.io/survinger/>
+
 - Report bugs at <https://github.com/CuiweiG/survinger/issues>
 
 ## Author
 
-**Maintainer**: Cuiwei Gao <48gaocuiwei@gmail.com> \[copyright holder\]
+**Maintainer**: Cuiwei Gao <48gaocuiwei@gmail.com>
+([ORCID](https://orcid.org/0009-0002-4896-0601)) \[copyright holder\]

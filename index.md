@@ -6,9 +6,11 @@ under unequal sequencing and reporting delays*
 [![CRAN
 status](https://www.r-pkg.org/badges/version/survinger)](https://CRAN.R-project.org/package=survinger)
 [![CRAN
+checks](https://badges.cranchecks.info/worst/survinger.svg)](https://cran.r-project.org/web/checks/check_results_survinger.html)
+[![CRAN
 downloads](https://cranlogs.r-pkg.org/badges/grand-total/survinger)](https://CRAN.R-project.org/package=survinger)
 [![R-CMD-check](https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml)
-[![version](https://img.shields.io/badge/version-0.1.1-blue)](https://github.com/CuiweiG/survinger)
+[![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.survinger-blue.svg)](https://doi.org/10.32614/CRAN.package.survinger)
 [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ------------------------------------------------------------------------
@@ -53,6 +55,7 @@ sequencing inequality.
 ## Installation
 
 ``` r
+
 # Stable release from CRAN
 install.packages("survinger")
 
@@ -64,6 +67,7 @@ install.packages("survinger")
 ## Quick example
 
 ``` r
+
 library(survinger)
 
 # Simulate surveillance data (or use your own)
@@ -104,71 +108,71 @@ surv_report(design)
 
 ### Design & data
 
-| Function                                                                                    | Purpose                                        |
-|---------------------------------------------------------------------------------------------|------------------------------------------------|
-| [`surv_design()`](https://cuiweig.github.io/survinger/reference/surv_design.md)             | Create design with inverse-probability weights |
-| [`surv_simulate()`](https://cuiweig.github.io/survinger/reference/surv_simulate.md)         | Generate synthetic surveillance data           |
-| [`surv_filter()`](https://cuiweig.github.io/survinger/reference/surv_filter.md)             | Subset a design by filter criteria             |
-| [`surv_update_rates()`](https://cuiweig.github.io/survinger/reference/surv_update_rates.md) | Update sequencing rates                        |
-| [`surv_set_weights()`](https://cuiweig.github.io/survinger/reference/surv_set_weights.md)   | Override design weights                        |
+| Function | Purpose |
+|----|----|
+| [`surv_design()`](https://cuiweig.github.io/survinger/reference/surv_design.md) | Create design with inverse-probability weights |
+| [`surv_simulate()`](https://cuiweig.github.io/survinger/reference/surv_simulate.md) | Generate synthetic surveillance data |
+| [`surv_filter()`](https://cuiweig.github.io/survinger/reference/surv_filter.md) | Subset a design by filter criteria |
+| [`surv_update_rates()`](https://cuiweig.github.io/survinger/reference/surv_update_rates.md) | Update sequencing rates |
+| [`surv_set_weights()`](https://cuiweig.github.io/survinger/reference/surv_set_weights.md) | Override design weights |
 
 ### Prevalence estimation
 
-| Function                                                                                                | Purpose                                       |
-|---------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| [`surv_lineage_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_lineage_prevalence.md) | Hajek / HT / post-stratified prevalence       |
-| [`surv_naive_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_naive_prevalence.md)     | Unweighted baseline prevalence                |
-| [`surv_prevalence_by()`](https://cuiweig.github.io/survinger/reference/surv_prevalence_by.md)           | Prevalence by subgroup (region, source, etc.) |
-| [`surv_estimate()`](https://cuiweig.github.io/survinger/reference/surv_estimate.md)                     | Pipe-friendly one-call analysis               |
+| Function | Purpose |
+|----|----|
+| [`surv_lineage_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_lineage_prevalence.md) | Hajek / HT / post-stratified prevalence |
+| [`surv_naive_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_naive_prevalence.md) | Unweighted baseline prevalence |
+| [`surv_prevalence_by()`](https://cuiweig.github.io/survinger/reference/surv_prevalence_by.md) | Prevalence by subgroup (region, source, etc.) |
+| [`surv_estimate()`](https://cuiweig.github.io/survinger/reference/surv_estimate.md) | Pipe-friendly one-call analysis |
 
 ### Delay correction & nowcasting
 
-| Function                                                                                                      | Purpose                                  |
-|---------------------------------------------------------------------------------------------------------------|------------------------------------------|
-| [`surv_estimate_delay()`](https://cuiweig.github.io/survinger/reference/surv_estimate_delay.md)               | Right-truncation-corrected delay fitting |
-| [`surv_reporting_probability()`](https://cuiweig.github.io/survinger/reference/surv_reporting_probability.md) | Cumulative reporting probability         |
-| [`surv_nowcast_lineage()`](https://cuiweig.github.io/survinger/reference/surv_nowcast_lineage.md)             | Delay-adjusted nowcast                   |
-| [`surv_adjusted_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_adjusted_prevalence.md)     | Combined design + delay correction       |
+| Function | Purpose |
+|----|----|
+| [`surv_estimate_delay()`](https://cuiweig.github.io/survinger/reference/surv_estimate_delay.md) | Right-truncation-corrected delay fitting |
+| [`surv_reporting_probability()`](https://cuiweig.github.io/survinger/reference/surv_reporting_probability.md) | Cumulative reporting probability |
+| [`surv_nowcast_lineage()`](https://cuiweig.github.io/survinger/reference/surv_nowcast_lineage.md) | Delay-adjusted nowcast |
+| [`surv_adjusted_prevalence()`](https://cuiweig.github.io/survinger/reference/surv_adjusted_prevalence.md) | Combined design + delay correction |
 
 ### Resource allocation
 
-| Function                                                                                                  | Purpose                                |
-|-----------------------------------------------------------------------------------------------------------|----------------------------------------|
-| [`surv_optimize_allocation()`](https://cuiweig.github.io/survinger/reference/surv_optimize_allocation.md) | Neyman allocation (3 objectives)       |
-| [`surv_compare_allocations()`](https://cuiweig.github.io/survinger/reference/surv_compare_allocations.md) | Benchmark all allocation strategies    |
-| [`surv_required_sequences()`](https://cuiweig.github.io/survinger/reference/surv_required_sequences.md)   | Sample size for target detection power |
+| Function | Purpose |
+|----|----|
+| [`surv_optimize_allocation()`](https://cuiweig.github.io/survinger/reference/surv_optimize_allocation.md) | Neyman allocation (3 objectives) |
+| [`surv_compare_allocations()`](https://cuiweig.github.io/survinger/reference/surv_compare_allocations.md) | Benchmark all allocation strategies |
+| [`surv_required_sequences()`](https://cuiweig.github.io/survinger/reference/surv_required_sequences.md) | Sample size for target detection power |
 
 ### Diagnostics & reporting
 
-| Function                                                                                                      | Purpose                                       |
-|---------------------------------------------------------------------------------------------------------------|-----------------------------------------------|
-| [`surv_detection_probability()`](https://cuiweig.github.io/survinger/reference/surv_detection_probability.md) | Variant detection power                       |
-| [`surv_power_curve()`](https://cuiweig.github.io/survinger/reference/surv_power_curve.md)                     | Detection probability across prevalence range |
-| [`surv_compare_estimates()`](https://cuiweig.github.io/survinger/reference/surv_compare_estimates.md)         | Weighted vs naive side-by-side plot           |
-| [`surv_design_effect()`](https://cuiweig.github.io/survinger/reference/surv_design_effect.md)                 | Design effect over time                       |
-| [`surv_sensitivity()`](https://cuiweig.github.io/survinger/reference/surv_sensitivity.md)                     | Sensitivity analysis across all methods       |
-| [`surv_report()`](https://cuiweig.github.io/survinger/reference/surv_report.md)                               | Surveillance system diagnostic                |
-| [`surv_quality()`](https://cuiweig.github.io/survinger/reference/surv_quality.md)                             | One-row quality metrics                       |
+| Function | Purpose |
+|----|----|
+| [`surv_detection_probability()`](https://cuiweig.github.io/survinger/reference/surv_detection_probability.md) | Variant detection power |
+| [`surv_power_curve()`](https://cuiweig.github.io/survinger/reference/surv_power_curve.md) | Detection probability across prevalence range |
+| [`surv_compare_estimates()`](https://cuiweig.github.io/survinger/reference/surv_compare_estimates.md) | Weighted vs naive side-by-side plot |
+| [`surv_design_effect()`](https://cuiweig.github.io/survinger/reference/surv_design_effect.md) | Design effect over time |
+| [`surv_sensitivity()`](https://cuiweig.github.io/survinger/reference/surv_sensitivity.md) | Sensitivity analysis across all methods |
+| [`surv_report()`](https://cuiweig.github.io/survinger/reference/surv_report.md) | Surveillance system diagnostic |
+| [`surv_quality()`](https://cuiweig.github.io/survinger/reference/surv_quality.md) | One-row quality metrics |
 
 ### Tidyverse integration
 
-| Function                                                                                                                    | Purpose                                    |
-|-----------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| Function | Purpose |
+|----|----|
 | [`tidy()`](https://generics.r-lib.org/reference/tidy.html) / [`glance()`](https://generics.r-lib.org/reference/glance.html) | Broom-style tidying for all result objects |
-| [`surv_bind()`](https://cuiweig.github.io/survinger/reference/surv_bind.md)                                                 | Combine multiple prevalence estimates      |
-| [`surv_table()`](https://cuiweig.github.io/survinger/reference/surv_table.md)                                               | Publication-ready formatted table          |
-| [`theme_survinger()`](https://cuiweig.github.io/survinger/reference/theme_survinger.md)                                     | Publication-quality ggplot2 theme          |
+| [`surv_bind()`](https://cuiweig.github.io/survinger/reference/surv_bind.md) | Combine multiple prevalence estimates |
+| [`surv_table()`](https://cuiweig.github.io/survinger/reference/surv_table.md) | Publication-ready formatted table |
+| [`theme_survinger()`](https://cuiweig.github.io/survinger/reference/theme_survinger.md) | Publication-quality ggplot2 theme |
 
 ## How it differs from existing tools
 
-|                  | phylosamp | survey          | epinowcast       | **survinger**                    |
-|------------------|-----------|-----------------|------------------|----------------------------------|
-| Question         | How many? | General surveys | Bayesian nowcast | **Allocate + correct + nowcast** |
-| Genomic-specific | ✓         | ✗               | Partial          | **✓**                            |
-| Allocation       | ✗         | ✗               | ✗                | **✓ (3 objectives)**             |
-| Delay correction | ✗         | ✗               | ✓                | **✓**                            |
-| Requires Stan    | ✗         | ✗               | ✓                | **✗**                            |
-| CRAN-friendly    | ✓         | ✓               | ✗                | **✓**                            |
+|  | phylosamp | survey | epinowcast | **survinger** |
+|----|----|----|----|----|
+| Question | How many? | General surveys | Bayesian nowcast | **Allocate + correct + nowcast** |
+| Genomic-specific | ✓ | ✗ | Partial | **✓** |
+| Allocation | ✗ | ✗ | ✗ | **✓ (3 objectives)** |
+| Delay correction | ✗ | ✗ | ✓ | **✓** |
+| Requires Stan | ✗ | ✗ | ✓ | **✗** |
+| CRAN-friendly | ✓ | ✓ | ✗ | **✓** |
 
 ## Validated on real data
 

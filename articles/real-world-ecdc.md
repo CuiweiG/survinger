@@ -31,6 +31,7 @@ population.
 ## Setting up the design
 
 ``` r
+
 library(survinger)
 
 # ecdc_surveillance is pre-processed from ECDC open data

@@ -30,6 +30,7 @@ survinger supports three optimization objectives:
 ## Example
 
 ``` r
+
 library(survinger)
 data(sarscov2_surveillance)
 
@@ -45,6 +46,7 @@ design <- surv_design(
 ### Optimize for minimum MSE
 
 ``` r
+
 alloc_mse <- surv_optimize_allocation(design, "min_mse", total_capacity = 500)
 print(alloc_mse)
 #> ── Optimal Sequencing Allocation ───────────────────────────────────────────────
@@ -68,6 +70,7 @@ plot(alloc_mse)
 ### Compare all strategies
 
 ``` r
+
 comparison <- surv_compare_allocations(design, total_capacity = 500)
 print(comparison)
 #> # A tibble: 5 × 4
@@ -86,6 +89,7 @@ while proportional allocation sacrifices detection power.
 ### With minimum coverage constraints
 
 ``` r
+
 alloc_floor <- surv_optimize_allocation(
   design, "min_mse", total_capacity = 500, min_per_stratum = 20
 )
