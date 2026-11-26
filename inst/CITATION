@@ -1,8 +1,16 @@
+## The year and version follow the installed release: CRAN sets
+## Date/Publication and R CMD build sets Packaged.
+year <- substr(c(meta$`Date/Publication`, meta$Date, meta$Packaged,
+                 format(Sys.Date()))[1L], 1L, 4L)
+note <- if (length(meta$Version)) sprintf("R package version %s", meta$Version)
+
 bibentry(
   bibtype = "Manual",
-  title = "survinger: Design-Adjusted Inference for Pathogen Lineage Surveillance",
-  author = person("Cuiwei", "Gao"),
-  year = "2026",
-  note = "R package version 0.1.1",
-  url = "https://github.com/CuiweiG/survinger"
+  key     = "R-survinger",
+  title   = "{survinger}: Design-Adjusted Inference for Pathogen Lineage Surveillance",
+  author  = person("Cuiwei", "Gao", comment = c(ORCID = "0009-0002-4896-0601")),
+  year    = year,
+  note    = note,
+  doi     = "10.32614/CRAN.package.survinger",
+  url     = "https://CRAN.R-project.org/package=survinger"
 )
