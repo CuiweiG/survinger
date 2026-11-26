@@ -12,12 +12,13 @@ Provides tools for optimizing sequencing resource allocation and estimating path
 Useful links:
 \itemize{
   \item \url{https://github.com/CuiweiG/survinger}
+  \item \url{https://cuiweig.github.io/survinger/}
   \item Report bugs at \url{https://github.com/CuiweiG/survinger/issues}
 }
 
 }
 \author{
-\strong{Maintainer}: Cuiwei Gao \email{48gaocuiwei@gmail.com} [copyright holder]
+\strong{Maintainer}: Cuiwei Gao \email{48gaocuiwei@gmail.com} (\href{https://orcid.org/0009-0002-4896-0601}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
