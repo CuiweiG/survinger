@@ -3,9 +3,10 @@
 
 <p align="center">
 <a href="https://CRAN.R-project.org/package=survinger"><img src="https://www.r-pkg.org/badges/version/survinger" alt="CRAN status" /></a>
+<a href="https://cran.r-project.org/web/checks/check_results_survinger.html"><img src="https://badges.cranchecks.info/worst/survinger.svg" alt="CRAN checks" /></a>
 <a href="https://CRAN.R-project.org/package=survinger"><img src="https://cranlogs.r-pkg.org/badges/grand-total/survinger" alt="CRAN downloads" /></a>
 <a href="https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml"><img src="https://github.com/CuiweiG/survinger/actions/workflows/R-CMD-check.yml/badge.svg" alt="R-CMD-check" /></a>
-<a href="https://github.com/CuiweiG/survinger"><img src="https://img.shields.io/badge/version-0.1.1-blue" alt="version" /></a>
+<a href="https://doi.org/10.32614/CRAN.package.survinger"><img src="https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.survinger-blue.svg" alt="DOI" /></a>
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="MIT" /></a>
 </p>
 
